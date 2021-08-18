@@ -16,7 +16,7 @@ pipeline {
 		stage('Run Jar') {
 			steps {
 				pwd
-				#java -jar miniProjectMonitors.jar
+				//java -jar miniProjectMonitors.jar
 			}
 		}
 	}
