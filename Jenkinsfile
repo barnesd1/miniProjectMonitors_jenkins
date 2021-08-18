@@ -8,14 +8,14 @@ pipeline {
 		}
 		stage('Build Jar') {
 			steps {
-				pwd
+				sh 'pwd'
 				sh 'mvn clean package'
-				ls *.jar
+				sh 'ls *.jar'
 			}
 		}
 		stage('Run Jar') {
 			steps {
-				pwd
+				sh 'pwd'
 				//java -jar miniProjectMonitors.jar
 			}
 		}
