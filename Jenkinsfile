@@ -3,7 +3,7 @@ pipeline {
 	stages {
 		stage('Clone Repo') {
 			steps {
-				sh 'git clone https://github.com/barnesd1/miniProjectMonitors_jenkins.git'
+				sh 'git refresh https://github.com/barnesd1/miniProjectMonitors_jenkins.git'
 			}
 		}
 		stage('Build Jar') {
