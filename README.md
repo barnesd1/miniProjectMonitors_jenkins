@@ -3,7 +3,7 @@
 #
 ## Tools used:
 #####	• Spring Tools Suite 4
-#####	• Java v11 with Spring API
+#####	• Java v11 runtime with Spring API
 #####	• MySql Workbench and local db instance
 #####	• Javascript
 #####	• HTML
