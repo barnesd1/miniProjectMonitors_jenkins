@@ -13,7 +13,7 @@ pipeline {
 		}
 		stage('Run Jar') {
 			steps {
-			        sh 'sudo ~/.jenkins/workspace/jenkinsMonitors/runApp.sh'
+			        sh 'bash runApp.sh'
 			}
 		}
 	}
