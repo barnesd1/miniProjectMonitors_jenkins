@@ -3,8 +3,12 @@ pipeline {
 	stages {
 		stage('Clone Repo') {
 			steps {
-				sh "[ -d 'miniProjectMonitors_jenkins' ] && git pull https://github.com/barnesd1/miniProjectMonitors_jenkins.git"
-				sh "[ ! -d 'miniProjectMonitors_jenkins' ] && git clone https://github.com/barnesd1/miniProjectMonitors_jenkins.git"
+				
+				sh "if [ ! -d 'miniProjectMonitors_jenkins' ] ; then
+				   git clone https://github.com/barnesd1/miniProjectMonitors_jenkins.git
+				else
+				   git pull https://github.com/barnesd1/miniProjectMonitors_jenkins.git
+				fi"
 			}
 		}
 		stage('Build Jar') {
