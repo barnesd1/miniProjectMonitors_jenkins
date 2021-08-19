@@ -4,7 +4,8 @@ pipeline {
 		stage('Clone Repo') {
 			steps {
 				
-				sh "if [ ! -d 'miniProjectMonitors_jenkins' ] ; then
+				sh "if [ ! -d 'miniProjectMonitors_jenkins' ] 
+				then
 				   git clone https://github.com/barnesd1/miniProjectMonitors_jenkins.git
 				else
 				   git pull https://github.com/barnesd1/miniProjectMonitors_jenkins.git
