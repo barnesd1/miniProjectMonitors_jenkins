@@ -3,8 +3,7 @@ pipeline {
 	stages {
 		stage('Clone Repo') {
 			steps {
-				
-				if [ ! -d 'miniProjectMonitors_jenkins' ]; then ;git clone https://github.com/barnesd1/miniProjectMonitors_jenkins.git; else; git pull https://github.com/barnesd1/miniProjectMonitors_jenkins.git; fi
+				sh 'git clone https://github.com/barnesd1/miniProjectMonitors_jenkins.git || git pull https://github.com/barnesd1/miniProjectMonitors_jenkins.git'
 			}
 		}
 		stage('Build Jar') {
