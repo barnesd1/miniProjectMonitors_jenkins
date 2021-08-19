@@ -8,15 +8,12 @@ pipeline {
 		}
 		stage('Build Jar') {
 			steps {
-				sh 'pwd'
 				sh 'mvn clean package'
-				sh 'ls *.jar'
 			}
 		}
 		stage('Run Jar') {
 			steps {
-				sh 'pwd'
-				//java -jar miniProjectMonitors.jar
+				java -jar target/monitors-0.0.1-SNAPSHOT.jar &
 			}
 		}
 	}
