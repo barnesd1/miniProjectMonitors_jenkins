@@ -22,6 +22,13 @@ pipeline {
 				sh 'mvn clean package'
 			}
 		}
+				stage('Moving Jar'){
+			steps{
+			sh 'mkdir -p /home/jenkins/jars'
+			sh 'mkdir -p /home/jenkins/appservice'
+			sh 'mv ./target/*.jar /home/jenkins/jars/monitors_jar.jar'
+			}
+                }
 		stage('Stopping Service'){
 			steps{
 			sh 'bash stopService.sh'
@@ -30,7 +37,7 @@ pipeline {
 		stage('Create new service file'){
 			steps{
 			sh ''' echo '#!/bin/bash
-sudo java -jar /home/jenkins/Wars/project_war.war' > /home/jenkins/appservice/start.sh
+sudo java -jar /home/jenkins/jars/monitors_jar.jar' > /home/jenkins/appservice/start.sh
 sudo chmod +x /home/jenkins/appservice/start.sh'''
 			sh '''echo '[Unit]
 Description=Monitors SpringBoot App
