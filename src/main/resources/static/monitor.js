@@ -9,7 +9,7 @@ const tableBottom = `</table>
 				</div>`;
 // const baseUrl = 'https://SpecialistComputerMonitors.com';'      //if application was live ;)
 //const baseUrl = 'http://localhost:9002';
-const baseUrl = 'http://63.33.45.155:9002';
+const baseUrl = 'http://18.237.12.54:9002';
 
 //Return all monitors from the api
 function showAll() {
