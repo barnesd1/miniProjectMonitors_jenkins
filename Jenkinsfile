@@ -6,16 +6,48 @@ pipeline {
 				sh 'git pull https://github.com/barnesd1/miniProjectMonitors_jenkins.git || git clone https://github.com/barnesd1/miniProjectMonitors_jenkins.git'
 			}
 		}
+		stage('Test Application'){
+			steps{
+			sh 'mvn clean test'
+			}
+		}
+		stage('Save Tests'){
+			steps{
+			sh 'mkdir -p /home/jenkins/Tests/${BUILD_NUMBER}_tests/'
+			sh 'mv ./target/surefire-reports/*.txt /home/jenkins/Tests/${BUILD_NUMBER}_tests/'
+			}
+		}
 		stage('Build Jar') {
 			steps {
 				sh 'mvn clean package'
 			}
 		}
-		stage('Run Jar') {
-			steps {
-			        sh 'bash runApp.sh'
+		stage('Stopping Service'){
+			steps{
+			sh 'bash stopService.sh'
 			}
 		}
+		stage('Create new service file'){
+			steps{
+			sh ''' echo '#!/bin/bash
+sudo java -jar /home/jenkins/Wars/project_war.war' > /home/jenkins/appservice/start.sh
+sudo chmod +x /home/jenkins/appservice/start.sh'''
+			sh '''echo '[Unit]
+Description=Monitors SpringBoot App
+[Service]
+User=ubuntu
+Type=simple
+ExecStart=/home/jenkins/appservice/start.sh
+[Install]
+WantedBy=multi-user.target' > /home/jenkins/monitors.service'''
+			sh'sudo mv /home/jenkins/monitors.service /etc/systemd/system/monitors.service'
+			}
+		}
+		stage('Reload and start service'){
+			steps{
+			sh 'sudo systemctl daemon-reload'
+			sh 'sudo systemctl start monitors.service'
+			}
 	}
 	
 }
