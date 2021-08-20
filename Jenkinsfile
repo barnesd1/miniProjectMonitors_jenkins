@@ -48,6 +48,7 @@ WantedBy=multi-user.target' > /home/jenkins/monitors.service'''
 			sh 'sudo systemctl daemon-reload'
 			sh 'sudo systemctl start monitors.service'
 			}
+		}
 	}
 	
 }
